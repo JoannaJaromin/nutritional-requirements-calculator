@@ -30,5 +30,5 @@ public class User {
     private String authority;
 
     @OneToOne(mappedBy = "user")
-    private UserDetails userDetails;
+    private UserData userData;
 }
