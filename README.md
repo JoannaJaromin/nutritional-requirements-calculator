@@ -19,4 +19,15 @@
     <li>Greenmail</li>
   </ul>
 </h3>
+<br>
+<h3>
+  Functionalities:
+  <ul>
+    <li>User login/registration</li>
+    <li>Measurements tracking</li>
+    <li>Obtaining individual requirements</li>
+    <li>Creating kafka events</li>
+    <li>Sending emails based on kafka events</li>
+  </ul>
+</h3>
   
