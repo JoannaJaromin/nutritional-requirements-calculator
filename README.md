@@ -1,3 +1,5 @@
+<h2> Application under development </h2>
+<br>
 <h2>Rest api for calculating individual nutritional requirements.</h2>
 <h3>
   Used technologies:
