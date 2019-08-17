@@ -2,7 +2,7 @@
 <br>
 <h2>Rest api for calculating individual nutritional requirements.</h2>
 <h3>
-  Technologies
+  Technologies:
   <ul>
     <li>Java 11</li>
     <li>Spring boot</li>
