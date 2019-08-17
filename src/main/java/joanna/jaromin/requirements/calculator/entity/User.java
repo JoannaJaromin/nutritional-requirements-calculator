@@ -2,10 +2,16 @@ package joanna.jaromin.requirements.calculator.entity;
 
 import lombok.Data;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Data
+@Entity
 @Table(name = "users")
 public class User {
 
@@ -17,15 +23,12 @@ public class User {
     @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "password")
     private String password;
 
-    @Column(name = "sex")
-    private String sex;
+    @Column(name = "authority")
+    private String authority;
 
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
+    @OneToOne(mappedBy = "user")
+    private UserDetails userDetails;
 }

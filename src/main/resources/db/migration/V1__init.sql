@@ -10,7 +10,8 @@ create table if not exists calculator.users
 
 create table if not exists calculator.users_details
 (
-    user_id       integer primary key references calculator.users (id),
+    id            serial primary key,
+    user_id       integer references calculator.users (id),
     email         varchar(30) not null,
     sex           varchar(1)  not null,
     date_of_birth date        not null
