@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,6 +22,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         return Optional.ofNullable(user)
@@ -37,8 +39,7 @@ public class UserService implements UserDetailsService {
         public Collection<? extends GrantedAuthority> getAuthorities() {
             String authority = user.getAuthority();
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority);
-            Collection<GrantedAuthority> authorities = Arrays.asList(grantedAuthority);
-            return authorities;
+            return Arrays.asList(grantedAuthority);
         }
 
         @Override
