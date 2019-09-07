@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface MeasurementService {
 
+    MeasurementDto findById(long id);
+
     List<MeasurementDto> findAll();
 
     MeasurementDto saveMeasurement(SaveMeasurementDto dto);

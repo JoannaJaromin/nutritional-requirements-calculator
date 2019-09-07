@@ -31,6 +31,13 @@ public class MeasurementServiceImpl implements MeasurementService {
     }
 
     @Override
+    public MeasurementDto findById(long id) {
+        return Optional.ofNullable(measurementRepository.findByIdCustom(id))
+                .map(measurement -> measurementConverter.map(measurement, MeasurementDto.class))
+                .orElseThrow(() -> new RecordNotFoundException("Nie znaleziono pomiaru o id: " + id));
+    }
+
+    @Override
     @Transactional
     public MeasurementDto saveMeasurement(SaveMeasurementDto dto) {
         Measurement measurement = saveMeasurementConverter.map(dto, Measurement.class);
@@ -47,6 +54,7 @@ public class MeasurementServiceImpl implements MeasurementService {
     }
 
     @Override
+    @Transactional
     public void deleteById(long measurementId) {
         measurementRepository.deleteById(measurementId);
     }

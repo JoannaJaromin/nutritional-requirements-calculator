@@ -19,6 +19,11 @@ public class MeasurementController {
     private List<MeasurementDto> findAll() {
         return measurementService.findAll();
     }
+    
+    @GetMapping("/measurements/{id}")
+    private MeasurementDto findById(@PathVariable long id){
+        return measurementService.findById(id);
+    }
 
     @PostMapping("/measurements")
     private MeasurementDto saveMeasurement(@Valid @RequestBody SaveMeasurementDto dto){
@@ -30,8 +35,8 @@ public class MeasurementController {
         return measurementService.updateMeasurement(dto);
     }
 
-    @DeleteMapping("/measurements/{measurementId")
-    private void deleteMeasurement (@PathVariable long measurementId){
-        measurementService.deleteById(measurementId);
+    @DeleteMapping("/measurements/{id")
+    private void deleteMeasurement (@PathVariable long id){
+        measurementService.deleteById(id);
     }
 }
