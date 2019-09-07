@@ -1,7 +1,7 @@
 package joanna.jaromin.requirements.calculator.service;
 
-import joanna.jaromin.requirements.calculator.converters.MeasurementConverter;
-import joanna.jaromin.requirements.calculator.converters.SaveMeasurementConverter;
+import joanna.jaromin.requirements.calculator.dto.MeasurementConverter;
+import joanna.jaromin.requirements.calculator.dto.SaveMeasurementConverter;
 import joanna.jaromin.requirements.calculator.dto.MeasurementDto;
 import joanna.jaromin.requirements.calculator.dto.SaveMeasurementDto;
 import joanna.jaromin.requirements.calculator.entity.Measurement;

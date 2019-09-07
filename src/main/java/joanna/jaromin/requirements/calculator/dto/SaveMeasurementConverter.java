@@ -1,6 +1,5 @@
-package joanna.jaromin.requirements.calculator.converters;
+package joanna.jaromin.requirements.calculator.dto;
 
-import joanna.jaromin.requirements.calculator.dto.SaveMeasurementDto;
 import joanna.jaromin.requirements.calculator.entity.Measurement;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
