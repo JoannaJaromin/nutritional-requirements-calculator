@@ -48,9 +48,9 @@ class UserServiceTest extends Specification {
     }
 
     def "UserService should throw exception when user doesn't exist"() {
-        given:
         when:
         userService.loadUserByUsername(INCORRECT_USERNAME)
+
         then:
         UsernameNotFoundException exception = thrown()
         exception.message == 'Brak użytkownika o nazwie: ' + INCORRECT_USERNAME
