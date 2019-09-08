@@ -1,17 +1,14 @@
 package joanna.jaromin.requirements.calculator.service;
 
 import joanna.jaromin.requirements.calculator.dto.MeasurementConverter;
-import joanna.jaromin.requirements.calculator.dto.SaveMeasurementConverter;
 import joanna.jaromin.requirements.calculator.dto.MeasurementDto;
+import joanna.jaromin.requirements.calculator.dto.SaveMeasurementConverter;
 import joanna.jaromin.requirements.calculator.dto.SaveMeasurementDto;
 import joanna.jaromin.requirements.calculator.entity.Measurement;
 import joanna.jaromin.requirements.calculator.exception.RecordNotFoundException;
-import joanna.jaromin.requirements.calculator.kafka.Channel;
+import joanna.jaromin.requirements.calculator.kafka.MeasurementUpdatedOutputHandler;
 import joanna.jaromin.requirements.calculator.repository.MeasurementRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.messaging.MessageChannel;
-import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,13 +19,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MeasurementServiceImpl implements MeasurementService {
 
+    private final MeasurementUpdatedOutputHandler outputHandler;
     private final MeasurementRepository measurementRepository;
     private final MeasurementConverter measurementConverter;
     private final SaveMeasurementConverter saveMeasurementConverter;
-
-    @Qualifier(Channel.MEASUREMENTS_UPDATED)
-    private final MessageChannel messageChannel;
-
 
     @Override
     @Transactional(readOnly = true)
@@ -51,7 +45,7 @@ public class MeasurementServiceImpl implements MeasurementService {
         Measurement measurement = saveMeasurementConverter.map(dto, Measurement.class);
         Measurement savedMeasurement = measurementRepository.save(measurement);
         MeasurementDto savedDto = measurementConverter.map(savedMeasurement, MeasurementDto.class);
-        messageChannel.send(new GenericMessage<>(savedDto));
+        outputHandler.handleMeasurementUpdated(savedDto);
         return savedDto;
     }
 
@@ -61,7 +55,7 @@ public class MeasurementServiceImpl implements MeasurementService {
         Measurement measurement = measurementConverter.map(dto, Measurement.class);
         Measurement savedMeasurement = measurementRepository.save(measurement);
         MeasurementDto updatedDto = measurementConverter.map(savedMeasurement, MeasurementDto.class);
-        messageChannel.send(new GenericMessage<>(updatedDto));
+        outputHandler.handleMeasurementUpdated(updatedDto);
         return updatedDto;
     }
 

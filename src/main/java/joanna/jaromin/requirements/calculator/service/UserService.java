@@ -1,6 +1,9 @@
 package joanna.jaromin.requirements.calculator.service;
 
+import joanna.jaromin.requirements.calculator.dto.UserConverter;
+import joanna.jaromin.requirements.calculator.dto.UserDto;
 import joanna.jaromin.requirements.calculator.entity.User;
+import joanna.jaromin.requirements.calculator.exception.RecordNotFoundException;
 import joanna.jaromin.requirements.calculator.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,6 +23,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final UserConverter userConverter;
 
     @Override
     @Transactional
@@ -28,6 +32,12 @@ public class UserService implements UserDetailsService {
         return Optional.ofNullable(user)
                 .map(MyUserDetails::new)
                 .orElseThrow(()-> new UsernameNotFoundException("Brak użytkownika o nazwie: " + username));
+    }
+
+    public UserDto findById(int userId) {
+        return userRepository.findById(userId)
+                .map(user -> userConverter.map(user, UserDto.class) )
+                .orElseThrow(() -> new RecordNotFoundException("Nie znaleziono użytkownika o id: " + userId));
     }
 
     @RequiredArgsConstructor

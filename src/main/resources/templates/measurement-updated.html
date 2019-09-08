@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+</head>
+<body>
+<h3 th:text="${'Witaj ' + username + ' !'}"></h3>
+<h3 th:text="${'Twoja aktualna masa ciała wynosi: ' + measurement.weight + 'kg przy wzroście: ' + measurement.height + 'cm.'}"></h3>
+<h3>Twoje aktualne zapotrzebowanie na składniki odżywcze wynosi:</h3>
+<ul>
+    <li><h3 th:text="${'Białko: ' + requirements.protein*measurement.weight + 'g'}"></h3></li>
+    <li><h3 th:text="${'Błonnik: ' + requirements.fiber + 'g.'}"></h3></li>
+    <li><h3 th:text="${'Wapń: ' + requirements.calcium + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Fosfor: ' + requirements.phosphorus + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Magnez: ' + requirements.magnesium + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Żelazo: ' + requirements.iron + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Potas: ' + requirements.potassium + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Sód: ' + requirements.sodium + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Cynk: ' + requirements.zinc + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Miedź: ' + requirements.copper + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Jod: ' + requirements.iodine + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Selen: ' + requirements.selenium + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Mangan: ' + requirements.manganese + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Witamina C: ' + requirements.vitC + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Witamina B1: ' + requirements.vitB1 + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Witamina B2: ' + requirements.vitB2 + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Witamina B3: ' + requirements.vitB3 + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Witamina B6: ' + requirements.vitB6 + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Kwas foliowy: ' + requirements.foliate + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Witamina B12: ' + requirements.vitB12 + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Witamina A: ' + requirements.vitA + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Witamina D: ' + requirements.vitD + 'μg'}"></h3></li>
+    <li><h3 th:text="${'Witamina E: ' + requirements.vitE + 'mg'}"></h3></li>
+    <li><h3 th:text="${'Witamina K: ' + requirements.vitK + 'μg'}"></h3></li>
+</ul>
+</body>
+</html>

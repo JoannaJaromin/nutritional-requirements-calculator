@@ -2,15 +2,17 @@ package joanna.jaromin.requirements.calculator.kafka;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface Channel {
 
-    String MEASUREMENTS_UPDATED = "MeasurementSavedOrUpdated";
+    String MEASUREMENT_UPDATED_OUTPUT = "measurementUpdatedOutput";
+    String MEASUREMENT_UPDATED_INPUT = "measurementUpdatedInput";
 
-    @Input(Channel.MEASUREMENTS_UPDATED)
-    SubscribableChannel measurementUpdated();
+    @Input(Channel.MEASUREMENT_UPDATED_INPUT)
+    SubscribableChannel sendEmailAboutUpdatedMeasurement();
 
-    @Output(Channel.MEASUREMENTS_UPDATED)
-    SubscribableChannel sendMeasurementUpdated();
+    @Output(Channel.MEASUREMENT_UPDATED_OUTPUT)
+    MessageChannel notifyAboutUpdatedMeasurement();
 }
