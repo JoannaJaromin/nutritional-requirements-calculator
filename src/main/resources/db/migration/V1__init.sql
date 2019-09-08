@@ -4,7 +4,7 @@ create table if not exists calculator.users
 (
     id        serial primary key,
     username  varchar(20) not null,
-    password  varchar(20) not null,
+    password  varchar(70) not null,
     authority varchar(10) default 'USER'
 );
 
